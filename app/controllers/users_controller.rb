@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 	def create #called when form is submitted on signup page
 		@user = User.new(user_params)  #not in the final impl
 		if @user.save
+			log_in @user
 			flash[:success] = "Welcome to ThreadFeed!"
       		redirect_to @user
   		else
