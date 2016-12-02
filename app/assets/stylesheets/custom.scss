@@ -60,22 +60,38 @@ p {
 /* header */
 
 #logo {
+  text-transform: lowercase;
   float: left;
+  font-family: 'Lora', serif;
+  letter-spacing: 2px;
   margin-right: 10px;
-  font-size: 1.7em;
+  font-size: 2.5em;
   color: #000;
-  text-transform: uppercase;
   padding-top: 9px;
   font-weight: bold;
 }
 
 #logo:hover {
-  color: #fff;
+  color: #9b677f;
   text-decoration: none;
 }
 
 header {
   background-color: white;
+}
+
+nav {
+  li {
+    text-transform: lowercase;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    letter-spacing: 1px;
+
+    a {
+      color: #9b677f;
+    }
+  }
 }
 
 
@@ -197,3 +213,17 @@ input {
   width: auto;
   margin-left: 0;
 }
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+
