@@ -216,7 +216,7 @@ input {
 
 /* Users index */
 
-.users {
+.users, .shops {
   list-style: none;
   margin: 0;
   li {
@@ -225,5 +225,6 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
 
 

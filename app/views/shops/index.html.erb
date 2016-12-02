@@ -1,0 +1,14 @@
+<% provide(:title, 'All Shops') %>
+<% provide(:user, @user) %>
+<h1>All Shops</h1>
+
+
+<%= will_paginate %>
+
+<ul class="shops">
+  <% @shops.each do |shop| %>
+    <%= render shop %>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

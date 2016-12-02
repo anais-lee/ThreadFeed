@@ -1,0 +1,8 @@
+<li>
+  <%= logo_for shop, size: 50 %>
+  <%= link_to shop.name, shop %>
+  <% if current_user.admin? && !current_user?(yield(:user)) %>
+    | <%= link_to "delete", shop, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+</li>
