@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: "Item 1"
+  price: "$58.00"
+  main_img_url: "www.test.com/image.png"
+  created_at: <%=4.years.ago%>
+
+two:
+  name: "Item 2"
+  price: "$58.00"
+  main_img_url: "www.test.com/image.png"
+  created_at: <%=3.years.ago%>
+
+three:
+  name: "Item 3"
+  price: "$58.00"
+  main_img_url: "www.test.com/image.png"
+  created_at: <%= 2.hours.ago %>
+
+four:
+  name: "Item 4"
+  price: "$58.00"
+  main_img_url: "www.test.com/image.png"
+  created_at: <%= Time.zone.now %>

@@ -139,6 +139,9 @@ nav {
 .navbar {
   border-bottom: 1px solid #eaeaea;
 }
+.navbar-nav > li > a:hover {
+  background-color: white;
+}
 
 
 /* footer */
@@ -398,6 +401,14 @@ span.picture {
   letter-spacing: 1px;
   font-size: 16px;
   font-weight: 500;
+
+  a {
+    color: black;
+    text-decoration: none;
+    &:hover {
+      color: #9b677f;
+    }
+  }
 }
 
 /*shop specific css*/

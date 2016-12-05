@@ -31,5 +31,14 @@ class ShopPostTest < ActiveSupport::TestCase
     assert_equal shop_posts(:most_recent), ShopPost.first
   end
 
+  test "associated items should be destroyed" do
+    @shop_post.save
+    @shop_post.items.create!(name: "Item 1", price:"$58.00", 
+        main_img_url: "www.test.com/image.png")
+    assert_difference 'Item.count', -1 do
+      @shop_post.destroy
+    end
+  end
+
 
 end

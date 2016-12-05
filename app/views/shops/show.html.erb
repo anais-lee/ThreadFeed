@@ -10,7 +10,7 @@
   </aside>
   <div class="col-md-9">
     <% if @shop.shop_posts.any? %>
-      <h3>Shop Posts (<%= @shop.shop_posts.count %>)</h3>
+      <h3 class="lowercase">Shop Posts (<%= @shop.shop_posts.count %>)</h3>
       <ol class="shop_posts">
         <%= render @shop_posts %>
       </ol>
