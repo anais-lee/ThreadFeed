@@ -1,3 +1,7 @@
 madewell:
   name: madewell
   url: www.madewell.com
+
+topshop: 
+  name: topshop
+  url: www.topshop.com

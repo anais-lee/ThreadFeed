@@ -1,14 +1,14 @@
 <% provide(:title, @shop.name) %>
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-2">
     <section class="shop_info">
-      <h1>
-        <%= logo_for @shop %>
-        (<%= @shop.name %>)
+      <h1 class="shop_logo">
+        <%= link_to @shop.name, @shop %>
       </h1>
+      <%= render 'follow_form' if logged_in? %>
     </section>
   </aside>
-  <div class="col-md-8">
+  <div class="col-md-9">
     <% if @shop.shop_posts.any? %>
       <h3>Shop Posts (<%= @shop.shop_posts.count %>)</h3>
       <ol class="shop_posts">

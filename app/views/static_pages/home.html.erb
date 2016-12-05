@@ -1,10 +1,19 @@
-<div class="center">
-  <%= link_to image_tag("logo.png", alt:"ThreadFeed Logo"), root_path %>
+<% if logged_in? %>
+	<div class="row">
+		<aside class="col-md-2">
+			<%= render 'layouts/side_navbar' %>
+		</aside>
+		<div class="col-md-9">
+      		<%= render 'shared/feed' %>
+    	</div>
+	</div>
+<% else %>
+	<div class="center">
 
-  <h2>
-    Welcome to ThreadFeed. A personalized comparison shopping application.
-  </h2>
+		<%= link_to image_tag("logo.png", alt:"ThreadFeed Logo"), root_path %>
+		<h2 class="lowercase">Welcome to ThreadFeed. A personalized comparison shopping application.</h2>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+		<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+	</div>
+<% end %>
 

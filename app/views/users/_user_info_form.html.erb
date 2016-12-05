@@ -1,3 +1,4 @@
+<%provide :picture_label,"Upload a Skintone Image (Optional)"%>
 <%= form_for(@user, url: yield(:form_submit_redirect)) do |f| %>
 	<%= render 'shared/error_messages' %>
 	<%= f.label :name %>
@@ -12,10 +13,11 @@
 	<%= f.label :password_confirmation, "Confirmation" %>
 	<%= f.password_field :password_confirmation, class: 'form-control' %>
 
-	<%= f.submit yield(:submit_button_text), class: "btn btn-primary" %>
-
-	<%= f.label :picture %>
+	<%= f.label yield(:picture_label) %>
 	<span class="picture">
 		<%= f.file_field :picture %>
 	</span>
+
+	<%= f.submit yield(:submit_button_text), class: "btn btn-primary" %>
+
 <%end%>

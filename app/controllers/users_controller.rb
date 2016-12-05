@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@shops = @user.following.paginate(page: params[:page], :per_page => 5)
 	end
 
 	def create #called when form is submitted on signup page
@@ -61,6 +62,14 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(root_url) unless @user == current_user
     end
+
+    def following
+	    @title = "Following"
+	    @user  = User.find(params[:id])
+	    @shops = @user.following.paginate(page: params[:page])
+	    render 'show_follow'
+	end
+
 
 	private
 		def user_params

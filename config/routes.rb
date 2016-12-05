@@ -14,8 +14,17 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  resources :users
-  resources :shops
+  resources :users do
+    member do
+      get :following
+    end
+  end
+  resources :shops do
+    member do
+      get :followers
+    end
+  end
   resources :shop_posts
+  resources :relationships,       only: [:create, :destroy]
 
 end

@@ -1,22 +1,6 @@
 <li id="shop_post-<%= shop_post.id %>">
-	<%= link_to logo_for(shop_post.shop, size: 50), shop_post.shop %>
-	<span class="shop"><%= link_to shop_post.shop.name, shop_post.shop %></span>
-	<span class="content"><%= shop_post.content %></span>
-	<%if shop_post.picture?%>
-		image_tag shop_post.picture.url %>
-	<% else %>
-		<% if current_user.admin? && !current_user?(@user) %>
-    	<%= form_for(shop_post, url: shop_post_path) do |f| %>
-			<%= f.label :picture %>
-			<span class="picture">
-				<%= f.file_field :picture %>
-			</span>
-			<%= f.submit "save image", class: "btn btn-primary" %>
-			<%end%>
-        <%end%>
-  	<%end%>
-
+	<span class="shop shop_logo"><%= link_to shop_post.shop.name, shop_post.shop %></span>
 	<span class="timestamp">
-		Posted <%= time_ago_in_words(shop_post.created_at) %> ago.
+		<%= time_ago_in_words(shop_post.created_at) %> ago
 	</span>
 </li>

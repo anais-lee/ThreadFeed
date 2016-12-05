@@ -9,6 +9,42 @@
 }
 
 /*universal*/
+
+.btn {
+  letter-spacing: 1px;
+  color: white;
+  text-transform: lowercase;
+  font-family: 'Alegreya Sans SC', sans-serif;
+
+  &:hover {
+    color: white;
+  }
+}
+.pink-button {
+  
+  background-color: #9b677f;
+  border-color:#9b677f;
+    &:hover{
+    background-color: #9b677f;
+    border-color:#9b677f;
+  }
+}
+.gray-button {
+  background-color: gray;
+  border-color:gray;
+}
+
+.lowercase {
+  text-transform:lowercase;
+}
+
+.small-title {
+  font-size: 18px;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  color: gray;
+  font-weight: 700;
+}
+
 body {
   padding-top: 60px;
 }
@@ -23,6 +59,9 @@ textarea {
 
 .center {
   text-align: center;
+  padding-top: 150px;
+  padding-bottom: 150px;
+  height: 100%;
 }
 
 .center h1 {
@@ -67,7 +106,7 @@ p {
   margin-right: 10px;
   font-size: 2.5em;
   color: #000;
-  padding-top: 9px;
+  padding-top: 1px;
   font-weight: bold;
 }
 
@@ -80,18 +119,25 @@ header {
   background-color: white;
 }
 
-nav {
+nav {  
   li {
     text-transform: lowercase;
     font-family: 'Alegreya Sans SC', sans-serif;
-    font-size: 17px;
-    font-weight: 300;
+    font-size: 16px;
     letter-spacing: 1px;
 
     a {
-      color: #9b677f;
+      color: black;
+
+      &:hover {
+        color: #9b677f;
+      }
     }
+
   }
+}
+.navbar {
+  border-bottom: 1px solid #eaeaea;
 }
 
 
@@ -138,6 +184,7 @@ footer ul li {
 
 
 aside {
+  margin-right: 10px;
   section.user_info {
     margin-top: 20px;
   }
@@ -232,9 +279,12 @@ input {
 .shop_posts {
   list-style: none;
   padding: 0;
+
   li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    padding:0;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom:50px;
+    padding-top: 20px;
   }
   .shop {
     margin-top: 5em;
@@ -251,7 +301,10 @@ input {
   .timestamp {
     color: $gray-light;
     display: block;
-    margin-left: 110px;
+    text-transform: lowercase;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 13px;
+    letter-spacing:2px;
   }
   .logo {
     float: left;
@@ -279,5 +332,103 @@ span.picture {
 .skin_image {
   width: 100px;
 }
+
+
+/*sidebar aside */
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+  a {
+    padding: 0;
+  }
+}
+
+.users.follow {
+  padding: 0;
+}
+
+
+/*side-navbar (custom) */
+.side-navbar {
+  position: fixed;
+}
+.side-navbar-header {
+    font-family: 'Lora', serif;
+    letter-spacing:2px;
+    font-size: 18px;
+    font-style:italic;
+    color: #666666;
+    padding: 30px 0 10px;
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+}
+
+.side-navbar-link {
+  text-transform: lowercase;
+  padding: 5px 0 5px 20px;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/*shop specific css*/
+.shop_logo {
+  a {
+    color:black;
+    font-family: 'Lora', serif;
+    font-style:italic;
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-weight: 500;
+
+    &:hover {
+      color: #9b677f;
+      text-decoration: none;
+    }
+  }
+}
+
+.shop_info { /*aside component*/
+  position:fixed;
+}
+
+
+/*follow form*/
+#follow_form {
+  padding: 20px 0;
+}
+
+
+
+
 
 
