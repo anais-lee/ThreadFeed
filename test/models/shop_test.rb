@@ -37,5 +37,13 @@ class ShopTest < ActiveSupport::TestCase
     assert_equal mixed_case_url.downcase, @shop.reload.url
   end
 
+  test "associated shop_posts should be destroyed" do
+      @shop.save
+      @shop.shop_posts.create!(content: "Lorem ipsum")
+      assert_difference 'ShopPost.count', -1 do
+        @shop.destroy
+      end
+  end
+
 
 end

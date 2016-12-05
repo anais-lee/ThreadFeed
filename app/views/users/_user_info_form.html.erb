@@ -1,5 +1,5 @@
 <%= form_for(@user, url: yield(:form_submit_redirect)) do |f| %>
-    <%= render 'shared/error_messages' %>
+	<%= render 'shared/error_messages' %>
 	<%= f.label :name %>
 	<%= f.text_field :name, class: 'form-control' %>
 
@@ -12,5 +12,10 @@
 	<%= f.label :password_confirmation, "Confirmation" %>
 	<%= f.password_field :password_confirmation, class: 'form-control' %>
 
-    <%= f.submit yield(:submit_button_text), class: "btn btn-primary" %>
+	<%= f.submit yield(:submit_button_text), class: "btn btn-primary" %>
+
+	<%= f.label :picture %>
+	<span class="picture">
+		<%= f.file_field :picture %>
+	</span>
 <%end%>

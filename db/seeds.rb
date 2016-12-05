@@ -11,6 +11,7 @@ User.create!(name:  "Admin User",
              password_confirmation: "admin123",
              admin: true)
 
+
 Shop.create!(name:  "Madewell",
              url: "www.madewell.com")
 
@@ -19,4 +20,12 @@ Shop.create!(name:  "Madewell",
   url = "example-#{n+1}.shopper.com"
   Shop.create!(name:  name,
                url: url)
+end
+
+shops = Shop.order(:created_at).take(6)
+50.times do
+  content = Faker::Lorem.sentence(5)
+  shops.each { 
+    |shop| shop.shop_posts.create!(content: content, 
+      picture: "https://i.s-madewell.com/is/image/madewell/E4761_WP4596_m?$pdp_fs418$") }
 end
