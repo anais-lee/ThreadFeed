@@ -9,79 +9,79 @@
 
 #make shop + other shops
 Shop.create!(name:  "Madewell",
-             url: "www.madewell.com")
+             url: "http://www.madewell.com")
 Shop.create!(name: "TopShop", 
-            url: "www.topshop.com")
+            url: "http://www.topshop.com")
 Shop.create!(name: "Anthropologie", 
-            url: "www.anthropologie.com")
+            url: "http://www.anthropologie.com")
 Shop.create!(name: "JCrew", 
-            url: "www.jcrew.com")
+            url: "http://www.jcrew.com")
 Shop.create!(name: "Loft", 
-            url: "www.loft.com")
+            url: "http://www.loft.com")
 Shop.create!(name: "Nasty Gal", 
-            url: "www.nastygal.com")
+            url: "http://www.nastygal.com")
 Shop.create!(name: "Nordstrom", 
-            url: "www.nordstrom.com")
+            url: "http://www.nordstrom.com")
 Shop.create!(name: "Bloomingdales", 
-            url: "www.bloomingdales.com")
+            url: "http://www.bloomingdales.com")
 Shop.create!(name: "Need Supply Co.", 
-            url: "www.needsupply.com")
+            url: "http://www.needsupply.com")
 Shop.create!(name: "Urban Outfitters", 
-            url: "www.uo.com")
+            url: "http://www.uo.com")
 Shop.create!(name: "Gap", 
-            url: "www.gap.com")
+            url: "http://www.gap.com")
 Shop.create!(name: "Athleta", 
-            url: "www.athleta.com")
+            url: "http://www.athleta.com")
 Shop.create!(name: "American Eagle", 
-            url: "www.ae.com")
+            url: "http://www.ae.com")
 Shop.create!(name: "Lululemon", 
-            url: "www.lululemon.com")
+            url: "http://www.lululemon.com")
 Shop.create!(name: "Forever 21", 
-            url: "www.forever21.com")
+            url: "http://www.forever21.com")
 Shop.create!(name: "Tobi", 
-            url: "www.tobi.com")
+            url: "http://www.tobi.com")
 Shop.create!(name: "Francesca's", 
-            url: "www.francescas.com")
+            url: "http://www.francescas.com")
 Shop.create!(name: "Charlotte Russe", 
-            url: "www.charlotterusse.com")
+            url: "http://www.charlotterusse.com")
 Shop.create!(name: "Zara", 
-            url: "www.zara.com")
+            url: "http://www.zara.com")
 Shop.create!(name: "H&M", 
-            url: "www.hm.com")
+            url: "http://www.hm.com")
 Shop.create!(name: "Wet Seal", 
-            url: "www.wetseal.com")
+            url: "http://www.wetseal.com")
 Shop.create!(name: "ASOS", 
-            url: "www.asos.com")
+            url: "http://www.asos.com")
 Shop.create!(name: "Revolve", 
-            url: "www.revolve.com")
+            url: "http://www.revolve.com")
 Shop.create!(name: "Reformation", 
-            url: "www.thereformation.com")
+            url: "http://www.thereformation.com")
 Shop.create!(name: "Theory", 
-            url: "www.theory.com")
+            url: "http://www.theory.com")
 Shop.create!(name: "Everlane", 
-            url: "www.everlane.com")
+            url: "http://www.everlane.com")
 Shop.create!(name: "Grana", 
-            url: "www.grana.com")
+            url: "http://www.grana.com")
 Shop.create!(name: "Uniqlo", 
-            url: "www.uniqlo.com")
+            url: "http://www.uniqlo.com")
 Shop.create!(name: "American Apparel", 
-            url: "www.americanapparel.com")
+            url: "http://www.americanapparel.com")
 Shop.create!(name: "La Garconne", 
-            url: "www.lagarconne.com")
+            url: "http://www.lagarconne.com")
 Shop.create!(name: "COS", 
-            url: "www.cosstores.com")
+            url: "http://www.cosstores.com")
 Shop.create!(name: "Aritzia", 
-            url: "www.aritzia.com")
+            url: "http://www.aritzia.com")
 Shop.create!(name: "Net-A-Porter", 
-            url: "www.net-a-porter.com")
+            url: "http://www.net-a-porter.com")
 Shop.create!(name: "Opening Ceremony", 
-            url: "www.openingceremony.com")
+            url: "http://www.openingceremony.com")
 Shop.create!(name: "Creatures of Comfort", 
-            url: "www.creaturesofcomfort.com")
+            url: "http://www.creaturesofcomfort.com")
 Shop.create!(name: "Oak", 
-            url: "www.oaknyc.com")
+            url: "http://www.oaknyc.com")
 Shop.create!(name: "ShopBop", 
-            url: "www.shopbop.com")
+            url: "http://www.shopbop.com")
 
 
 #make admin user + other users
@@ -101,14 +101,30 @@ User.create!(name:  "Admin User",
                password_confirmation: password)
 end
 
-shops = Shop.order(:created_at).take(6)
+shops = Shop.order(:created_at).take(6) #add 60 posts to first 6 shops
 60.times do
   content = Faker::Lorem.sentence(5)
   shops.each { 
-    |shop| shop.shop_posts.create!(content: content) }
+    |shop| shop.shop_posts.create!(content: content) 
+  }
 end
 
+shops = Shop.all #add 5 posts to each shop
+5.times do
+  content = Faker::Lorem.sentence(5)
+  shops.each {
+    |shop| shop.shop_posts.create!(content: content) 
+  }
+end
 
+shop_posts = ShopPost.order(:created_at).take(360)
+3.times do
+  name = Faker::Name.name
+  price = "$58.00"
+  main_img_url = Faker::Placeholdit.image
+  shop_posts.each { |shop_post| shop_post.items.create!(name: name, 
+    price: price, main_img_url:main_img_url) }
+end
 
 # Following relationships
 users = User.all

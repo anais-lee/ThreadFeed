@@ -279,9 +279,14 @@ input {
 
 /* shop_posts */
 
+.post_row {
+  width: 100%;
+  display: block;
+}
 .shop_posts {
   list-style: none;
   padding: 0;
+  display: block;
 
   li {
     padding:0;
@@ -437,6 +442,39 @@ span.picture {
 #follow_form {
   padding: 20px 0;
 }
+
+
+/*items*/
+.item {
+  display: inline-block;
+  width: auto;
+}
+.item-info {
+  text-align: center;
+  padding-top: 10px;
+}
+.item-section {
+  padding-top: 20px;
+}
+.item-name a, 
+.item-price a {
+  color: black;
+  text-decoration:none;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  letter-spacing:1px;
+
+  &:hover {
+    text-decoration: none;
+    color: #9b677f;
+
+  }
+}
+
+
+
+
+
+
 
 
 

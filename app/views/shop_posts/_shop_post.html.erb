@@ -1,6 +1,15 @@
-<li id="shop_post-<%= shop_post.id %>">
+<li id="shop_post-<%= shop_post.id %>" class="post_row">
 	<span class="shop shop_logo"><%= link_to shop_post.shop.name, shop_post.shop %></span>
 	<span class="timestamp">
 		<%= time_ago_in_words(shop_post.created_at) %> ago
 	</span>
+	<div class="item-section">
+		<% if shop_post.items.any? %>
+			<ol class="items">
+				<% shop_post.items.each do |item| %>
+				<%= render item %>
+				<% end %>
+			</ol>
+		<% end %>
+	</div>
 </li>

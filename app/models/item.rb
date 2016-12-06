@@ -5,4 +5,5 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :main_img_url, presence: true
+  
 end

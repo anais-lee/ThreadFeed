@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end
   end
   resources :shop_posts
+  resources :items
   resources :relationships,       only: [:create, :destroy]
 
 end
