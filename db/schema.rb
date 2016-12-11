@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205190653) do
+ActiveRecord::Schema.define(version: 20161210225816) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -18,8 +18,13 @@ ActiveRecord::Schema.define(version: 20161205190653) do
     t.text     "description"
     t.string   "main_img_url"
     t.integer  "shop_post_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.         "image_file"
+    t.string   "product_url"
+    t.string   "thumbnail_img_url"
+    t.         "thumbnail_img_file"
+    t.         "main_img_file"
     t.index ["shop_post_id", "created_at"], name: "index_items_on_shop_post_id_and_created_at"
     t.index ["shop_post_id"], name: "index_items_on_shop_post_id"
   end

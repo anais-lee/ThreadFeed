@@ -1,13 +1,28 @@
-<div id="item-<%= @item.id %>">
-	<div class="col-md-5">
-		<%= link_to main_img_for(@item, size: 200), @shop.url %>
-	</div>
-	<div class="col-md-3">
-		<div class="user"><%= link_to @item.name, @item %></div>
 
-		<div class="price"><%= link_to @item.price, @item %></div>
+<div id="item-<%= @item.id %>" class="item-details">
+	<table>
+		<tr>
+			<th>
+				<%= link_to main_img_for(@item, size: 400), @item.product_url %>
+			</th>
+			<th>
+				<div class="details-holder">
+					<div class="item-name lowercase large "><%= @item.name %></div>
 
-		<h3 class="lowercase"> Description </h3>
-		<div class="description"><%= link_to @item.description, @item %></div>
-	</div>
+					<div class="item-price lowercase large">$<%= @item.price %></div>
+
+					<h3 class="lowercase medium"> Description </h3>
+					<div class="item-description"><%= @item.description%></div>
+
+					<div class="link-to-shop">
+						<h4 class="lowercase medium"><span class="btn pink-button"><%=link_to @shop.name, @shop.url %></span></h4>
+					</div>
+				</div>
+			</th>
+
+		</tr>
+	</table>
 </div>
+
+
+

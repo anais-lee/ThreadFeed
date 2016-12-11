@@ -1,7 +1,9 @@
+
 <div id="item-<%= item.id %>" class="item">
-	<%= link_to main_img_for(item, size: 265), item %>
+	<%= link_to thumbnail_img_for(item, size: 265), item %>
 	<div class="item-info">
 		<div class="item-name lowercase"><%= link_to item.name, item %></div>
 		<div class="item-price lowercase"><%= link_to item.price, item %></div>
 	</div>
 </div>
+

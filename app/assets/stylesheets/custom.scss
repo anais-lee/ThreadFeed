@@ -9,6 +9,23 @@
 }
 
 /*universal*/
+a {
+  text-decoration: none;
+  color: black;
+  &:hover, &:active {
+    color: #9b677f;
+    text-decoration:none;
+  }
+
+}
+
+table, tr, th {
+  padding:0;
+  vertical-align:top;
+}
+.replace-background-btn {
+  padding-bottom: 5px;
+}
 
 .btn {
   letter-spacing: 1px;
@@ -291,7 +308,6 @@ input {
   li {
     padding:0;
     border-bottom: 1px solid #e8e8e8;
-    padding-bottom:50px;
     padding-top: 20px;
   }
   .shop {
@@ -448,33 +464,65 @@ span.picture {
 .item {
   display: inline-block;
   width: auto;
+  padding-bottom: 30px;
 }
 .item-info {
   text-align: center;
-  padding-top: 10px;
+  line-height: 16px;
+  padding-top:10px
 }
 .item-section {
   padding-top: 20px;
 }
 .item-name a, 
-.item-price a {
+.item-price a,
+.item-price, 
+.item-name {
   color: black;
   text-decoration:none;
   font-family: 'Alegreya Sans SC', sans-serif;
   letter-spacing:1px;
-
   &:hover {
     text-decoration: none;
     color: #9b677f;
+  }
+}
 
+.item-details {
+  padding-top: 30px;
+  margin:0 auto;
+  width: 80%;
+  display:block;
+}
+.item-description {
+  font-family: 'Lora', serif;
+}
+.details-holder {
+  padding-left: 20px;
+}
+.link-to-shop {
+  margin-top: 50px;
+  a {
+    color:white;
+    &:hover {
+      color:white;
+    }
   }
 }
 
 
 
 
-
-
+/* overriding font details */
+.large {
+  font-size: 25px;
+}
+.medium {
+  font-size: 20px;
+}
+.small {
+  font-size: 15px;
+}
 
 
 
