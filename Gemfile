@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails',                  '5.0.0.1'
+gem 'RubyInline', '~> 3.12', '>= 3.12.4'
 gem 'mechanize',    '~> 2.7', '>= 2.7.4'
 gem 'wombat',       '~> 2.5', '>= 2.5.1'
 gem 'paperclip',              '~> 4.3'

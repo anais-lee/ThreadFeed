@@ -10,6 +10,8 @@
 #make shop + other shops
 Shop.create!(name:  "Madewell",
              url: "http://www.madewell.com")
+Shop.create!(name: "TopShop", 
+            url: "http://www.topshop.com")
 Shop.create!(name: "Athleta", 
             url: "http://www.athleta.com")
 Shop.create!(name: "Nordstrom", 
@@ -18,8 +20,6 @@ Shop.create!(name: "Aritzia",
             url: "http://www.aritzia.com")
 Shop.create!(name: "Zara", 
             url: "http://www.zara.com/us/")
-Shop.create!(name: "TopShop", 
-            url: "http://www.topshop.com")
 Shop.create!(name: "Anthropologie", 
             url: "http://www.anthropologie.com")
 Shop.create!(name: "Loft", 
@@ -233,6 +233,105 @@ items.each do |item|
 
 end
 
+
+shop2 = Shop.second
+puts "scraping shop:"
+puts shop2.name
+page = agent.get(shop2.url)
+puts page
+link = page.xpath('//a[contains(text(), "NEW ARRIVALS")]')
+if link == nil || link.length == 0
+  link = page.xpath('//a[contains(text(), "New Arrivals")]')
+end
+if link == nil || link.length == 0
+  link = page.xpath('//a[contains(text(), "new arrivals")]')
+end
+if link == nil || link.length == 0
+  link = page.xpath('//a[contains(text(), "NEW IN")]')
+end
+if link == nil || link.length == 0
+  link = page.xpath('//a[contains(text(), "New In")]')
+end
+if link == nil || link.length == 0
+  link = page.xpath('//a[contains(text(), "new in")]')
+end
+if link == nil || link.length == 0
+  link = page.xpath('//a[contains(text(), "NEW")]')
+end
+if link == nil || link.length == 0
+  link = page.xpath('//a[contains(text(), "New")]')
+end
+if link == nil || link.length == 0
+  link = page.xpath('//a[contains(text(), "new")]')
+end
+new_page = agent.get(link.first.attribute("href")) #get new arrivals page
+
+items = new_page.search('a img') #returns nokogiri NodeSet
+per_post = 0
+num_items = 0
+content = Faker::Lorem.sentence(10)
+shop_post = shop2.shop_posts.create!(content: content)
+
+#for each item, add to a post (get pics, info, etc. in the process)
+items.each do |item| 
+  product_url = item.xpath("ancestor::a[1]").attribute("href") #link to product page
+  item_page = agent.get(product_url) #get product page
+  item_imgs = item_page.xpath('//img') #returns all images on item page
+  #find large pixel item + set as main_img_url
+  thumbnail_img_url = item.attribute("src").to_s #for thumbnail on feed page
+  if (thumbnail_img_url == nil || !thumbnail_img_url.start_with?("http"))
+    puts "skipping this item below"
+    next
+  end
+  puts "thumbnail_img_url: " << thumbnail_img_url
+  main_img_url = item.attribute("src").to_s #backup thumbnail as main_img_url
+  item_imgs.each do |item_img|
+    size = item_img.attribute("size").to_s
+    width = item_img.attribute("width").to_s
+    height = item_img.attribute("height").to_s
+    if size != nil && size.to_i > 350
+      main_img_url = item_img.attribute("src")
+      break
+    end 
+    if width != nil && width.to_i > 350
+      main_img_url = item_img.attribute("src")
+      break
+    end
+    if height != nil && height.to_i > 350
+      main_img_url = item_img.attribute("src")
+      break
+    end
+  end
+
+  num_items = num_items + 1
+  name = "item "<< num_items
+  if (main_img_url != nil && main_img_url.to_s.length != 0) 
+    per_post = per_post + 1
+    if (per_post > 5)
+      shop_post.save #save current shop_post state w/ 6 items
+      shop_post = shop2.shop_posts.create!(content: content) #create new shop_post
+      shop_post.items.create!(
+        name: name, 
+        price: $0, 
+        product_url: product_url, 
+        thumbnail_img_url: thumbnail_img_url,
+        main_img_url: main_img_url,
+        description: Faker::Lorem.sentence(10)) #add curr item to this new shop_post
+      per_post = 0
+    else  
+      shop_post.items.create!(
+        name: name, 
+        price: $0, 
+        product_url: product_url,
+        thumbnail_img_url: thumbnail_img_url,
+        #thumbnail_img_file: URI.parse(thumbnail_img_url).read,
+        main_img_url: main_img_url, 
+        #main_img_file: URI.parse(main_img_url).open.read,
+        description: Faker::Lorem.sentence(10))
+    end
+  end
+
+end
 
 
 # Following relationships

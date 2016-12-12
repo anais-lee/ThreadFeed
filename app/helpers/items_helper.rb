@@ -9,13 +9,13 @@ module ItemsHelper
 	def main_img_for(item, options={size: 200})
 		size=options[:size]
 		main_img = item.get_main_img
-		image_tag(main_img, alt: item.name, class: "item_img", size: size)
+		image_tag(main_img, alt: item.name, class: "item_img", width: size)
 	end
 
 	def thumbnail_img_for(item, options={size: 265})
 		size=options[:size]
 		thumbnail_img = item.get_thumbnail_img
-		image_tag(thumbnail_img, alt:item.name, class: "item_img", size: size)
+		image_tag(thumbnail_img, alt:item.name, class: "item_img", width: size)
 	end
 
 end

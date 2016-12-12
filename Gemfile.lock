@@ -2,6 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (2.3.4)
+    RubyInline (3.12.4)
+      ZenTest (~> 4.3)
+    ZenTest (4.11.1)
     actioncable (5.0.0.1)
       actionpack (= 5.0.0.1)
       nio4r (~> 1.2)
@@ -390,6 +393,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RubyInline (~> 3.12, >= 3.12.4)
   bcrypt (= 3.1.11)
   bootstrap-sass (= 3.3.6)
   bootstrap-will_paginate (= 0.0.10)
