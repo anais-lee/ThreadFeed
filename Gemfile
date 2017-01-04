@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 gem 'rails',                  '5.0.0.1'
+gem 'selenium-webdriver', '~> 2.53', '>= 2.53.4'
+gem 'watir-webdriver',        '~> 0.9.1'
+gem 'whenever',       :require => false
 gem 'RubyInline', '~> 3.12', '>= 3.12.4'
 gem 'mechanize',    '~> 2.7', '>= 2.7.4'
 gem 'wombat',       '~> 2.5', '>= 2.5.1'

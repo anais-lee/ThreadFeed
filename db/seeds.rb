@@ -8,78 +8,78 @@
 
 
 #make shop + other shops
-Shop.create!(name:  "Madewell",
-             url: "http://www.madewell.com")
-Shop.create!(name: "TopShop", 
-            url: "http://www.topshop.com")
-Shop.create!(name: "Athleta", 
-            url: "http://www.athleta.com")
-Shop.create!(name: "Nordstrom", 
-            url: "http://www.nordstrom.com")
-Shop.create!(name: "Aritzia", 
-            url: "http://www.aritzia.com")
-Shop.create!(name: "Zara", 
-            url: "http://www.zara.com/us/")
 Shop.create!(name: "Anthropologie", 
-            url: "http://www.anthropologie.com")
+  url: "https://www.anthropologie.com")
+Shop.create!(name: "Aritzia", 
+  url: "https://www.aritzia.com")
+Shop.create!(name: "TopShop", 
+  url: "http://www.topshop.com") 
+Shop.create!(name: "Athleta", 
+  url: "http://www.athleta.gap.com")
+Shop.create!(name:  "Madewell",
+ url: "https://www.madewell.com")
+Shop.create!(name: "Nordstrom", 
+  url: "http://www.nordstrom.com")
+Shop.create!(name: "Zara", 
+  url: "http://www.zara.com/us/")
 Shop.create!(name: "Loft", 
-            url: "http://www.loft.com")
+  url: "http://www.loft.com")
 Shop.create!(name: "Nasty Gal", 
-            url: "http://www.nastygal.com")
+  url: "http://www.nastygal.com")
 Shop.create!(name: "Bloomingdales", 
-            url: "http://www.bloomingdales.com")
+  url: "http://www.bloomingdales.com")
 Shop.create!(name: "Need Supply Co.", 
-            url: "http://www.needsupply.com")
+  url: "http://www.needsupply.com")
 Shop.create!(name: "Urban Outfitters", 
-            url: "http://www.urbanoutfitters.com")
+  url: "http://www.urbanoutfitters.com")
 Shop.create!(name: "Gap", 
-            url: "http://www.gap.com")
+  url: "http://www.gap.com")
 Shop.create!(name: "American Eagle", 
-            url: "http://www.ae.com")
+  url: "http://www.ae.com")
 Shop.create!(name: "Lululemon", 
-            url: "http://www.lululemon.com")
+  url: "http://www.lululemon.com")
 Shop.create!(name: "Forever 21", 
-            url: "http://www.forever21.com")
+  url: "http://www.forever21.com")
 Shop.create!(name: "Tobi", 
-            url: "http://www.tobi.com")
+  url: "http://www.tobi.com")
 Shop.create!(name: "Francesca's", 
-            url: "http://www.francescas.com")
+  url: "http://www.francescas.com")
 Shop.create!(name: "Charlotte Russe", 
-            url: "http://www.charlotterusse.com")
+  url: "http://www.charlotterusse.com")
 Shop.create!(name: "H&M", 
-            url: "http://www.hm.com")
+  url: "http://www.hm.com")
 Shop.create!(name: "Wet Seal", 
-            url: "http://www.wetseal.com")
+  url: "http://www.wetseal.com")
 Shop.create!(name: "ASOS", 
-            url: "http://www.asos.com")
+  url: "http://www.asos.com")
 Shop.create!(name: "Revolve", 
-            url: "http://www.revolve.com")
+  url: "http://www.revolve.com")
 Shop.create!(name: "Reformation", 
-            url: "http://www.thereformation.com")
+  url: "http://www.thereformation.com")
 Shop.create!(name: "Theory", 
-            url: "http://www.theory.com")
+  url: "http://www.theory.com")
 Shop.create!(name: "Everlane", 
-            url: "http://www.everlane.com")
+  url: "http://www.everlane.com")
 Shop.create!(name: "Grana", 
-            url: "http://www.grana.com")
+  url: "http://www.grana.com")
 Shop.create!(name: "Uniqlo", 
-            url: "http://www.uniqlo.com")
+  url: "http://www.uniqlo.com")
 Shop.create!(name: "American Apparel", 
-            url: "http://www.americanapparel.com")
+  url: "http://www.americanapparel.com")
 Shop.create!(name: "La Garconne", 
-            url: "http://www.lagarconne.com")
+  url: "http://www.lagarconne.com")
 Shop.create!(name: "COS", 
-            url: "http://www.cosstores.com")
+  url: "http://www.cosstores.com")
 Shop.create!(name: "Net-A-Porter", 
-            url: "http://www.net-a-porter.com")
+  url: "http://www.net-a-porter.com")
 Shop.create!(name: "Opening Ceremony", 
-            url: "http://www.openingceremony.com")
+  url: "http://www.openingceremony.com")
 Shop.create!(name: "Creatures of Comfort", 
-            url: "http://www.creaturesofcomfort.com")
+  url: "http://www.creaturesofcomfort.com")
 Shop.create!(name: "Oak", 
-            url: "http://www.oaknyc.com")
+  url: "http://www.oaknyc.com")
 Shop.create!(name: "ShopBop", 
-            url: "http://www.shopbop.com")
+  url: "http://www.shopbop.com")
 
 
 #make admin user + other users
@@ -135,13 +135,17 @@ end
 #shops = Shop.all
 agent = Mechanize.new
 shop = Shop.first 
+puts "shop.url: " << shop.url
 puts "scraping shop:"
 puts shop.name
-page = agent.get(shop.url)
-puts page
-link = page.xpath('//a[contains(text(), "NEW ARRIVALS")]')
+page = Nokogiri::HTML(open(shop.url))
+page.css('*').remove_attr('xmlns')
+puts "shop.url1: " << shop.url
+
+link = page.xpath('//a[contains(text(), "NEW ARRIVALS")]') 
 if link == nil || link.length == 0
-  link = page.xpath('//a[contains(text(), "New Arrivals")]')
+  link = page.xpath('//a[contains(text(), "New Arrivals")]') 
+  puts "got here1" 
 end
 if link == nil || link.length == 0
   link = page.xpath('//a[contains(text(), "new arrivals")]')
@@ -160,13 +164,29 @@ if link == nil || link.length == 0
 end
 if link == nil || link.length == 0
   link = page.xpath('//a[contains(text(), "New")]')
+  puts "got here"
 end
 if link == nil || link.length == 0
   link = page.xpath('//a[contains(text(), "new")]')
 end
-new_page = agent.get(link.first.attribute("href")) #get new arrivals page
+link = link.first.attribute("href")
+if (!link.to_s.start_with?("http")) 
+  link = shop.url.to_s + link
+  puts "shop.url2: " << shop.url
 
-items = new_page.search('a img') #returns nokogiri NodeSet
+end
+puts "link to new arrivals page: " << link
+puts "shop.url: " << shop.url
+
+#wait for AJAX content to be loaded
+browser = Watir::Browser.new
+browser.goto link
+new_page = Nokogiri::HTML.parse(browser.html)
+browser.close if browser
+new_page.css('*').remove_attr('xmlns')
+puts "shop.url: " << shop.url
+
+items = new_page.xpath('//a/descendant::img')
 per_post = 0
 num_items = 0
 content = Faker::Lorem.sentence(10)
@@ -175,12 +195,37 @@ shop_post = shop.shop_posts.create!(content: content)
 #for each item, add to a post (get pics, info, etc. in the process)
 items.each do |item| 
   product_url = item.xpath("ancestor::a[1]").attribute("href") #link to product page
-  item_page = agent.get(product_url) #get product page
-  item_imgs = item_page.xpath('//img') #returns all images on item page
+  if (!product_url.to_s.start_with?("http")) 
+    product_url = shop.url + product_url
+  end
+  begin
+    puts "trying to GET " << product_url
+    #wait for AJAX content to be loaded
+    browser = Watir::Browser.new
+    begin
+      browser.goto product_url
+    rescue Exception => e
+      puts "skipping this item: timeout"
+    end
+
+    item_page = Nokogiri::HTML.parse(browser.html) #get product page
+    browser.close if browser
+    item_page.css('*').remove_attr('xmlns')
+  rescue OpenURI::HTTPError => e
+    if e.message == '404'
+      puts "skipping this item: 404"
+      next
+    else
+      raise # Some other error, re-raise
+    end
+  end
+  item_imgs = item_page.xpath('//img') #returns all images on product page
+
   #find large pixel item + set as main_img_url
-  thumbnail_img_url = item.attribute("src").to_s #for thumbnail on feed page
-  if (thumbnail_img_url == nil || !thumbnail_img_url.start_with?("http"))
-    puts "skipping this item below"
+  thumbnail_img_url = item.attribute("src").to_s #get a href for img for thumbnail img
+  if ((thumbnail_img_url == nil || !thumbnail_img_url.start_with?("http")) && 
+    !thumbnail_img_url.to_s.include?(".com"))
+    puts "skipping this item"
     next
   end
   puts "thumbnail_img_url: " << thumbnail_img_url
@@ -234,104 +279,105 @@ items.each do |item|
 end
 
 
-shop2 = Shop.second
-puts "scraping shop:"
-puts shop2.name
-page = agent.get(shop2.url)
-puts page
-link = page.xpath('//a[contains(text(), "NEW ARRIVALS")]')
-if link == nil || link.length == 0
-  link = page.xpath('//a[contains(text(), "New Arrivals")]')
-end
-if link == nil || link.length == 0
-  link = page.xpath('//a[contains(text(), "new arrivals")]')
-end
-if link == nil || link.length == 0
-  link = page.xpath('//a[contains(text(), "NEW IN")]')
-end
-if link == nil || link.length == 0
-  link = page.xpath('//a[contains(text(), "New In")]')
-end
-if link == nil || link.length == 0
-  link = page.xpath('//a[contains(text(), "new in")]')
-end
-if link == nil || link.length == 0
-  link = page.xpath('//a[contains(text(), "NEW")]')
-end
-if link == nil || link.length == 0
-  link = page.xpath('//a[contains(text(), "New")]')
-end
-if link == nil || link.length == 0
-  link = page.xpath('//a[contains(text(), "new")]')
-end
-new_page = agent.get(link.first.attribute("href")) #get new arrivals page
+# shop2 = Shop.second
+# puts "scraping shop:"
+# puts shop2.name
+# page = agent.get(shop2.url)
+# link = page.xpath('//a[contains(text(), "NEW ARRIVALS")]')
+# if link == nil || link.length == 0
+#   link = page.xpath('//a[contains(text(), "New Arrivals")]')
+# end
+# if link == nil || link.length == 0
+#   link = page.xpath('//a[contains(text(), "new arrivals")]')
+# end
+# if link == nil || link.length == 0
+#   link = page.xpath('//a[contains(text(), "NEW IN")]')
+# end
+# if link == nil || link.length == 0
+#   link = page.xpath('//a[contains(text(), "New In")]')
+# end
+# if link == nil || link.length == 0
+#   link = page.xpath('//a[contains(text(), "new in")]')
+# end
+# if link == nil || link.length == 0
+#   link = page.xpath('//a[contains(text(), "NEW")]')
+# end
+# if link == nil || link.length == 0
+#   link = page.xpath('//a[contains(text(), "New")]')
+# end
+# if link == nil || link.length == 0
+#   link = page.xpath('//a[contains(text(), "new")]')
+# end
+# new_page = agent.get(link.first.attribute("href")) #get new arrivals page
 
-items = new_page.search('a img') #returns nokogiri NodeSet
-per_post = 0
-num_items = 0
-content = Faker::Lorem.sentence(10)
-shop_post = shop2.shop_posts.create!(content: content)
+# items = new_page.search('a img') #returns nokogiri NodeSet
+# per_post = 0
+# num_items = 0
+# content = Faker::Lorem.sentence(10)
+# shop_post = shop2.shop_posts.create!(content: content)
 
-#for each item, add to a post (get pics, info, etc. in the process)
-items.each do |item| 
-  product_url = item.xpath("ancestor::a[1]").attribute("href") #link to product page
-  item_page = agent.get(product_url) #get product page
-  item_imgs = item_page.xpath('//img') #returns all images on item page
-  #find large pixel item + set as main_img_url
-  thumbnail_img_url = item.attribute("src").to_s #for thumbnail on feed page
-  if (thumbnail_img_url == nil || !thumbnail_img_url.start_with?("http"))
-    puts "skipping this item below"
-    next
-  end
-  puts "thumbnail_img_url: " << thumbnail_img_url
-  main_img_url = item.attribute("src").to_s #backup thumbnail as main_img_url
-  item_imgs.each do |item_img|
-    size = item_img.attribute("size").to_s
-    width = item_img.attribute("width").to_s
-    height = item_img.attribute("height").to_s
-    if size != nil && size.to_i > 350
-      main_img_url = item_img.attribute("src")
-      break
-    end 
-    if width != nil && width.to_i > 350
-      main_img_url = item_img.attribute("src")
-      break
-    end
-    if height != nil && height.to_i > 350
-      main_img_url = item_img.attribute("src")
-      break
-    end
-  end
+# #for each item, add to a post (get pics, info, etc. in the process)
+# items.each do |item| 
+#   product_url = item.xpath("ancestor::a[1]").attribute("href") #link to product page
+#   item_page = agent.get(product_url) #get product page
+#   item_imgs = item_page.xpath('//img') #returns all images on item page
+#   #find large pixel item + set as main_img_url
+#   thumbnail_img_url = item.attribute("src").to_s #for thumbnail on feed page
+#   if (thumbnail_img_url == nil || !thumbnail_img_url.start_with?("http"))
+#     puts "skipping this item below"
+#     next
+#   end
+#   puts "thumbnail_img_url: " << thumbnail_img_url
+#   main_img_url = item.attribute("src").to_s #backup thumbnail as main_img_url
+#   item_imgs.each do |item_img|
+#     size = item_img.attribute("size").to_s
+#     width = item_img.attribute("width").to_s
+#     height = item_img.attribute("height").to_s
+#     if size != nil && size.to_i > 350
+#       main_img_url = item_img.attribute("src")
+#       break
+#     end 
+#     if width != nil && width.to_i > 350
+#       main_img_url = item_img.attribute("src")
+#       break
+#     end
+#     if height != nil && height.to_i > 350
+#       main_img_url = item_img.attribute("src")
+#       break
+#     end
+#   end
 
-  num_items = num_items + 1
-  name = "item "<< num_items
-  if (main_img_url != nil && main_img_url.to_s.length != 0) 
-    per_post = per_post + 1
-    if (per_post > 5)
-      shop_post.save #save current shop_post state w/ 6 items
-      shop_post = shop2.shop_posts.create!(content: content) #create new shop_post
-      shop_post.items.create!(
-        name: name, 
-        price: $0, 
-        product_url: product_url, 
-        thumbnail_img_url: thumbnail_img_url,
-        main_img_url: main_img_url,
-        description: Faker::Lorem.sentence(10)) #add curr item to this new shop_post
-      per_post = 0
-    else  
-      shop_post.items.create!(
-        name: name, 
-        price: $0, 
-        product_url: product_url,
-        thumbnail_img_url: thumbnail_img_url,
-        #thumbnail_img_file: URI.parse(thumbnail_img_url).read,
-        main_img_url: main_img_url, 
-        #main_img_file: URI.parse(main_img_url).open.read,
-        description: Faker::Lorem.sentence(10))
-    end
-  end
+#   num_items = num_items + 1
+#   name = "item "<< num_items
+#   if (main_img_url != nil && main_img_url.to_s.length != 0) 
+#     per_post = per_post + 1
+#     if (per_post > 5)
+#       shop_post.save #save current shop_post state w/ 6 items
+#       shop_post = shop2.shop_posts.create!(content: content) #create new shop_post
+#       shop_post.items.create!(
+#         name: name, 
+#         price: $0, 
+#         product_url: product_url, 
+#         thumbnail_img_url: thumbnail_img_url,
+#         main_img_url: main_img_url,
+#         description: Faker::Lorem.sentence(10)) #add curr item to this new shop_post
+#       per_post = 0
+#     else  
+#       shop_post.items.create!(
+#         name: name, 
+#         price: $0, 
+#         product_url: product_url,
+#         thumbnail_img_url: thumbnail_img_url,
+#         #thumbnail_img_file: URI.parse(thumbnail_img_url).read,
+#         main_img_url: main_img_url, 
+#         #main_img_file: URI.parse(main_img_url).open.read,
+#         description: Faker::Lorem.sentence(10))
+#     end
+#   end
 
-end
+# end
+
+
 
 
 # Following relationships
